@@ -16,7 +16,10 @@ const Dashboard = () => {
   const totalBalance = totalIncome - totalExpenses
 
   const totalSubscriptions = subscriptions
-    .reduce((sum, s) => sum + parseFloat(s.amount), 0)
+    .reduce((sum, s) => {
+      const amt = parseFloat(s.amount || 0)
+      return sum + (s.cycle === 'monthly' ? amt : amt / 12)
+    }, 0)
 
   const chartData = [
     { month: 'Jan', balance: 2500 },
@@ -37,57 +40,57 @@ const Dashboard = () => {
   })
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pt-6 pb-12 px-4 lg:px-12">
-      <header className="mb-12">
-        <h1 className="text-4xl font-black text-slate-900">Dashboard</h1>
-        <p className="text-slate-600 mt-2">Welcome back! Here's your financial overview.</p>
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pt-20 md:pt-24 pb-12 px-3 md:px-4 lg:px-12">
+      <header className="mb-8 md:mb-12">
+        <h1 className="text-2xl md:text-4xl font-black text-slate-900">Dashboard</h1>
+        <p className="text-slate-600 mt-2 text-sm md:text-base">Welcome back! Here's your financial overview.</p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
+        <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm border-l-4 border-blue-500">
           <div className="flex justify-between items-start">
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Total Balance</p>
-              <h3 className="text-3xl font-extrabold text-slate-900">€{totalBalance.toFixed(2)}</h3>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 truncate">€{totalBalance.toFixed(2)}</h3>
             </div>
-            <span className="text-3xl">💰</span>
+            <span className="text-2xl md:text-3xl flex-shrink-0">💰</span>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-green-500">
+        <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm border-l-4 border-green-500">
           <div className="flex justify-between items-start">
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Total Income</p>
-              <h3 className="text-3xl font-extrabold text-green-600">€{totalIncome.toFixed(2)}</h3>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-green-600 truncate">€{totalIncome.toFixed(2)}</h3>
             </div>
-            <span className="text-3xl">📈</span>
+            <span className="text-2xl md:text-3xl flex-shrink-0">📈</span>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-red-500">
+        <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm border-l-4 border-red-500">
           <div className="flex justify-between items-start">
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Total Expenses</p>
-              <h3 className="text-3xl font-extrabold text-red-600">€{totalExpenses.toFixed(2)}</h3>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-red-600 truncate">€{totalExpenses.toFixed(2)}</h3>
             </div>
-            <span className="text-3xl">📉</span>
+            <span className="text-2xl md:text-3xl flex-shrink-0">📉</span>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-purple-500">
+        <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm border-l-4 border-purple-500">
           <div className="flex justify-between items-start">
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Subscriptions</p>
-              <h3 className="text-3xl font-extrabold text-purple-600">€{totalSubscriptions.toFixed(2)}</h3>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-purple-600 truncate">€{totalSubscriptions.toFixed(2)}</h3>
             </div>
-            <span className="text-3xl">📱</span>
+            <span className="text-2xl md:text-3xl flex-shrink-0">📱</span>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl p-8 shadow-sm mb-12">
-        <h2 className="text-2xl font-black mb-6">Balance Trend</h2>
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="bg-white rounded-xl p-4 md:p-8 shadow-sm mb-12">
+        <h2 className="text-lg md:text-2xl font-black mb-4 md:mb-6">Balance Trend</h2>
+        <ResponsiveContainer width="100%" height={250} className="md:h-300">
           <AreaChart data={chartData}>
             <defs>
               <linearGradient id="colorBalance" x1="0" y1="0" x2="0" y2="1">

@@ -5,6 +5,7 @@ const router = express.Router();
 let budgets = [
   { id: 1, category: 'Food', limit: 500, spent: 200 }
 ];
+let nextId = 2;
 
 // GET all budgets
 router.get('/', (req, res) => {
@@ -13,9 +14,9 @@ router.get('/', (req, res) => {
 
 // POST new budget
 router.post('/', (req, res) => {
-  const newBudget = { id: budgets.length + 1, ...req.body };
+  const newBudget = { id: nextId++, ...req.body };
   budgets.push(newBudget);
-  res.json(newBudget);
+  res.status(201).json(newBudget);
 });
 
 // PUT update budget
@@ -25,6 +26,18 @@ router.put('/:id', (req, res) => {
   if (budget) {
     Object.assign(budget, req.body);
     res.json(budget);
+  } else {
+    res.status(404).json({ error: 'Budget not found' });
+  }
+});
+
+// DELETE budget
+router.delete('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = budgets.findIndex(b => b.id === id);
+  if (index !== -1) {
+    budgets.splice(index, 1);
+    res.json({ message: 'Budget deleted' });
   } else {
     res.status(404).json({ error: 'Budget not found' });
   }

@@ -83,11 +83,39 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           </NavLink>
         </nav>
 
-        <footer className="mt-auto border-t border-white/20 pt-4">
-          <div className="text-white hover:bg-white/20 rounded-xl mx-4 my-1 px-4 py-3 flex items-center gap-3 cursor-pointer transition-all duration-200">
+        <footer className="mt-auto border-t border-white/20 pt-4 px-4 space-y-2">
+          <div className="text-white hover:bg-white/20 rounded-xl mx-0 my-1 px-4 py-3 flex items-center gap-3 cursor-pointer transition-all duration-200">
             <span className="text-xl">⚙️</span>
             <span className="text-sm">Settings</span>
           </div>
+          <NavLink
+            to="/impressum"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                isActive
+                  ? 'bg-white text-violet-600 font-bold shadow-lg'
+                  : 'text-white hover:bg-white/20 hover:translate-x-1'
+              }`
+            }
+          >
+            <span className="text-xl">📋</span>
+            <span className="text-sm">Impressum</span>
+          </NavLink>
+          <NavLink
+            to="/data-privacy"
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                isActive
+                  ? 'bg-white text-violet-600 font-bold shadow-lg'
+                  : 'text-white hover:bg-white/20 hover:translate-x-1'
+              }`
+            }
+          >
+            <span className="text-xl">🔒</span>
+            <span className="text-sm">Data Privacy</span>
+          </NavLink>
         </footer>
       </aside>
     </>

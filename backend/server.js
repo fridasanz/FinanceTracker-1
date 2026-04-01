@@ -22,17 +22,8 @@ app.use((req, res) => {
   res.status(404).json({ error: `Route ${req.path} not found` });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Error interno del servidor' });
-});
-
 const server = app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });
 
 server.on('error', (err) => {
@@ -40,4 +31,9 @@ server.on('error', (err) => {
     console.error(`❌ Puerto ${PORT} ocupado. Corre: lsof -ti:${PORT} | xargs kill -9`);
     process.exit(1);
   }
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Error interno del servidor' });
 });
