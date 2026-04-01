@@ -18,4 +18,16 @@ router.post('/', (req, res) => {
   res.json(newBudget);
 });
 
+// PUT update budget
+router.put('/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const budget = budgets.find(b => b.id === id);
+  if (budget) {
+    Object.assign(budget, req.body);
+    res.json(budget);
+  } else {
+    res.status(404).json({ error: 'Budget not found' });
+  }
+});
+
 module.exports = router;

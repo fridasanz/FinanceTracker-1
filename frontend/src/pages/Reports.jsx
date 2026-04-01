@@ -1,31 +1,31 @@
 const Reports = () => {
   const categoryData = [
-    { name: 'Comida', icon: '🛒', amount: 165.00, momentum: -5, status: 'ÓPTIMO' },
-    { name: 'Transporte', icon: '🚌', amount: 65.00, momentum: 0, status: 'ESTABLE' },
-    { name: 'Entretenimiento', icon: '🎮', amount: 45.50, momentum: 3, status: 'SOBRE PRESUPUESTO' },
-    { name: 'Educación', icon: '📚', amount: 120.00, momentum: -2, status: 'PLANIFICADO' },
+    { name: 'Food', icon: '🛒', amount: 165.00, momentum: -5, status: 'OPTIMAL' },
+    { name: 'Transport', icon: '🚌', amount: 65.00, momentum: 0, status: 'STABLE' },
+    { name: 'Entertainment', icon: '🎮', amount: 45.50, momentum: 3, status: 'OVER BUDGET' },
+    { name: 'Education', icon: '📚', amount: 120.00, momentum: -2, status: 'PLANNED' },
   ]
 
   return (
-    <main className="ml-64 min-h-screen bg-slate-50 pt-24 p-8">
+    <main className="min-h-screen bg-slate-50 pt-6 p-4 lg:p-8">
       {/* Hero Section */}
       <section className="mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-8">
             <h1 className="text-5xl font-black text-slate-900 mb-4 tracking-tight leading-none">
-              Gestionando el presupuesto <span className="text-lime-400 italic">inteligentemente.</span>
+              Managing the budget <span className="text-lime-400 italic">intelligently.</span>
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl leading-relaxed">
-              Este mes has mantenido tus gastos bajo control. Reduciendo gastos discrecionales un 8%, tu tasa de ahorro ha mejorado significativamente. ¡Muy bien!
+              This month you have kept your expenses under control. By reducing discretionary spending by 8%, your savings rate has improved significantly. Well done!
             </p>
           </div>
           <div className="lg:col-span-4 flex justify-end">
             <div className="bg-white p-6 rounded-2xl shadow-sm flex flex-col items-center">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Puntuación Financiera</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Financial Score</span>
               <div className="text-4xl font-black text-violet-700">72.5</div>
               <div className="flex items-center text-lime-400 font-bold text-sm mt-1">
                 <span>📈</span>
-                <span className="ml-1">+3.2% vs Marzo</span>
+                <span className="ml-1">+3.2% vs March</span>
               </div>
             </div>
           </div>
